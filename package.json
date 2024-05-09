@@ -1,0 +1,25 @@
+{
+  "name": "ecohub-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch --env-file=.env src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.13.0",
+    "bcrypt": "^5.1.1",
+    "fastify": "^4.27.0",
+    "fastify-type-provider-zod": "^1.1.9",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^20.12.10",
+    "prisma": "^5.13.0",
+    "tsx": "^4.9.3"
+  }
+}
