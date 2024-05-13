@@ -2,6 +2,7 @@ import { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 import { prisma } from '../../lib/prisma'
+import { BadRequestError } from '../_errors/bad-request-error'
 
 export async function createProject(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -30,9 +31,7 @@ export async function createProject(app: FastifyInstance) {
       })
 
       if (!userExists) {
-        return reply.status(400).send({
-          message: 'Bad request',
-        })
+        throw new BadRequestError('User not found')
       }
 
       await prisma.project.create({
