@@ -6,7 +6,11 @@ export async function listProjects(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get('/projects', {}, async (request, reply) => {
     const projects = await prisma.project.findMany({
       include: {
-        user: true,
+        user: {
+          select: {
+            name: true,
+          },
+        },
       },
     })
 
