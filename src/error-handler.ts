@@ -2,6 +2,7 @@ import type { FastifyInstance } from 'fastify'
 import { ZodError } from 'zod'
 
 import { BadRequestError } from './routes/_errors/bad-request-error'
+import { NotFoundError } from './routes/_errors/not-found-error'
 
 type FastifyErrorHandler = FastifyInstance['errorHandler']
 
@@ -15,6 +16,12 @@ export const errorHandler: FastifyErrorHandler = (error, request, reply) => {
 
   if (error instanceof BadRequestError) {
     reply.status(400).send({
+      message: error.message,
+    })
+  }
+
+  if (error instanceof NotFoundError) {
+    reply.status(404).send({
       message: error.message,
     })
   }
