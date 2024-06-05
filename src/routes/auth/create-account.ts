@@ -15,12 +15,14 @@ export async function createAccount(app: FastifyInstance) {
           email: z.string().email(),
           password: z.string().min(6),
           document: z.string().min(11).max(14),
-          phone: z.string().length(13),
+          institution: z.string().min(3).max(255),
+          city: z.string().min(3).max(255),
+          state: z.string().min(2).max(2),
         }),
       },
     },
     async (request, reply) => {
-      const { name, email, password, document, phone } = request.body
+      const { name, email, password, document, city, state, institution } = request.body
 
       const passwordHash = await hash(password, 10)
 
@@ -40,7 +42,9 @@ export async function createAccount(app: FastifyInstance) {
           email,
           password: passwordHash,
           document,
-          phone,
+          city,
+          state,
+          institution,
         },
       })
 

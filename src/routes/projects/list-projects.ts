@@ -9,6 +9,8 @@ export async function listProjects(app: FastifyInstance) {
         user: {
           select: {
             name: true,
+            institution: true,
+            state: true,
           },
         },
       },

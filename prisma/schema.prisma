@@ -14,28 +14,29 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  name      String
-  email     String    @unique
-  password  String
-  document  String
-  phone     String
-  createdAt DateTime  @default(now()) @map("created_at")
-  Project   Project[]
+  id          String    @id @default(uuid())
+  name        String
+  email       String    @unique
+  password    String
+  document    String
+  institution String
+  city        String
+  state       String
+  createdAt   DateTime  @default(now()) @map("created_at")
+  Project     Project[]
 
   @@map("users")
 }
 
 model Project {
-  id            String   @id @default(uuid())
-  title         String
-  description   String
-  category      String
-  location      String
-  financialGoal Decimal  @map("financial_goal")
-  deadline      DateTime
-  status        String
-  createdAt     DateTime @default(now()) @map("created_at")
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  ods         String
+  linkedin    String
+  instagram   String
+  image       String?
+  createdAt   DateTime @default(now()) @map("created_at")
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @map("user_id")
